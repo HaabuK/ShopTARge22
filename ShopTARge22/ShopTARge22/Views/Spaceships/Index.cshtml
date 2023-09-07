@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ShopTARge22.Models.Spaceships.SpaceshipsIndexViewModel>
+
+<div class="h1">
+    Products
+</div>
+
+<form method="post">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">BuiltDate</th>
+                <th scope="col">Passengers</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*@foreach (var spaceships in Model)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@spaceships.Name</td>
+                        <td>@spaceships.Type</td>
+                        <td>@spaceships.BuiltDate</td>
+                        <td>@spaceships.Passengers</td>
+                    </tr>
+                }*@
+        </tbody>
+    </table>
+</form>
