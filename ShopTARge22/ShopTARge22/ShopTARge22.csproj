@@ -17,6 +17,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.21" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Spaceships\" />
@@ -25,5 +26,13 @@
   <ItemGroup>
     <Folder Include="Views\Spaceships\" />
     <Folder Include="Models\Spaceships\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShopTARge22.Data\ShopTARge22.Data.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\ShopTARge22.Core\ShopTARge22.Core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

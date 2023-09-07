@@ -1,5 +1,4 @@
-﻿using System;
-namespace ShopTARge22.Models.Spaceships
+﻿namespace ShopTARge22.Models.Spaceships
 {
 	public class SpaceshipsIndexViewModel
 	{
