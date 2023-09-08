@@ -11,5 +11,6 @@ namespace ShopTARge22.Data
 
 		public DbSet<Spaceships> Spaceships { get; set; }
 	}
+	
 }
 
