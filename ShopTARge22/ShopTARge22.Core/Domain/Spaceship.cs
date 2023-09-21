@@ -1,7 +1,6 @@
-﻿using System;
-namespace ShopTARge22.Core.Domain
+﻿namespace ShopTARge22.Core.Domain
 {
-	public class Spaceships
+	public class Spaceship
 	{
 		public Guid? Id { get; set; }
 		public string Name { get; set; }

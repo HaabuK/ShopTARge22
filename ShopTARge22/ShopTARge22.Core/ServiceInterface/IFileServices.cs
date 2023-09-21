@@ -1,11 +1,10 @@
-﻿using System;
+﻿using ShopTARge22.Core.Domain;
+using ShopTARge22.Core.Dto;
+
 namespace ShopTARge22.Core.ServiceInterface
 {
-	public class IFileServices
-	{
-		public IFileServices()
-		{
-		}
-	}
+    public interface IFileServices
+    {
+        void FilesToApi(SpaceshipDto dto, Spaceship spaceship);
+    }
 }
-

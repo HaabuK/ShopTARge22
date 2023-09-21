@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARge22.Data", "ShopTAR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARge22.Core", "ShopTARge22.Core\ShopTARge22.Core.csproj", "{E4F2D9FB-75A6-419D-AF78-B07E07B2EE64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARge22.ApplicationServices", "ShopTARge22.ApplicationServices\ShopTARge22.ApplicationServices.csproj", "{DF32EBD8-1109-42E9-A18D-31E3D69E70A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E4F2D9FB-75A6-419D-AF78-B07E07B2EE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4F2D9FB-75A6-419D-AF78-B07E07B2EE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4F2D9FB-75A6-419D-AF78-B07E07B2EE64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF32EBD8-1109-42E9-A18D-31E3D69E70A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF32EBD8-1109-42E9-A18D-31E3D69E70A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF32EBD8-1109-42E9-A18D-31E3D69E70A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF32EBD8-1109-42E9-A18D-31E3D69E70A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@ namespace ShopTARge22.Data
 		{
 		}
 
-		public DbSet<Spaceships> Spaceships { get; set; }
+		public DbSet<Spaceship> Spaceships { get; set; }
         public DbSet<FileToApi> FileToApis { get; set; }
     }
 	

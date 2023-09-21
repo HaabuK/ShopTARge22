@@ -1,4 +1,4 @@
-﻿Fnamespace ShopTARge22.Core.Domain
+﻿namespace ShopTARge22.Core.Domain
 {
     public class FileToApi
 {
