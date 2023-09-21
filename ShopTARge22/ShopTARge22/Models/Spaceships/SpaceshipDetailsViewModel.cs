@@ -10,6 +10,7 @@
         public int CargoWeight { get; set; }
         public int Crew { get; set; }
         public int EnginePower { get; set; }
+        public List<ImageViewModel> Image { get; set; }
 
 
         public DateTime CreatedAt { get; set; }
