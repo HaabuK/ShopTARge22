@@ -66,7 +66,7 @@ namespace ShopTARge22.Controllers
                 FileToApiDtos = vm.Image
                     .Select(x => new FileToApiDto
                     {
-                        Id = x.Id,
+                        Id = x.ImageId,
                         ExistingFilePath = x.FilePath,
                         SpaceshipId = x.SpaceshipId,
                     }).ToArray()
@@ -150,7 +150,7 @@ namespace ShopTARge22.Controllers
                 .Select(y => new ImageViewModel
                 {
                     FilePath = y.ExistingFilePath,
-                    Id = y.Id
+                    ImageId = y.Id
                 }).ToArrayAsync();
 
             var vm = new SpaceshipDetailsViewModel();
