@@ -146,7 +146,7 @@ namespace ShopTARge22.Controllers
                 return NotFound();
             }
             var images = await _context.FileToApis
-                .Where(x => x.Id == id)
+                .Where(x => x.SpaceshipId == id)
                 .Select(y => new ImageViewModel
                 {
                     FilePath = y.ExistingFilePath,

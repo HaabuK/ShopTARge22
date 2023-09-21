@@ -15,7 +15,7 @@ namespace ShopTARge22.ApplicationServices.Services
         public SpaceshipsServices
             (
                 ShopTARge22Context context,
-                FileServices fileServices
+                IFileServices fileServices
             )
         {
             _context = context;
