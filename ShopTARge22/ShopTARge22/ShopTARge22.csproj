@@ -23,10 +23,14 @@
   <ItemGroup>
     <None Remove="Views\Spaceships\" />
     <None Remove="Models\Spaceships\" />
+    <None Remove="Models\RealEstates\" />
+    <None Remove="Views\RealEstates\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Spaceships\" />
     <Folder Include="Models\Spaceships\" />
+    <Folder Include="Models\RealEstates\" />
+    <Folder Include="Views\RealEstates\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopTARge22.Data\ShopTARge22.Data.csproj">

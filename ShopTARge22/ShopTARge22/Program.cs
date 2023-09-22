@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ISpaceshipsServices, SpaceshipsServices>();
+builder.Services.AddScoped<IRealEstatesServices, RealEstatesServices>();
 builder.Services.AddScoped<IFileServices, FileServices>();
 
 builder.Services.AddDbContext<ShopTARge22Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ShopTARge22")));
