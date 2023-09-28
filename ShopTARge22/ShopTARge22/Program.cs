@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShopTARge22.Core.ServiceInterface;
 using ShopTARge22.ApplicationServices.Services;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +29,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "multipleFileUpload")),
+    RequestPath = "/multipleFileUpload"
+});
 
 app.UseRouting();
 
