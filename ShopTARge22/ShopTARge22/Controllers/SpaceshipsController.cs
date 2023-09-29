@@ -136,6 +136,7 @@ namespace ShopTARge22.Controllers
                 EnginePower = vm.EnginePower,
                 CreatedAt = vm.CreatedAt,
                 ModifiedAt = vm.ModifiedAt,
+                Files = vm.Files,
                 FileToApiDtos = vm.Image
                     .Select(x => new FileToApiDto
                     {

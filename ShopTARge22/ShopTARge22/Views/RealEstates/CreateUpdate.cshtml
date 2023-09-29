@@ -58,7 +58,7 @@ else
             </div>
         </div>
 
-        @*<div class="form-group row">
+        <div class="form-group row">
             <label asp-for="Files" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-5">
                 <div class="custom-file">
@@ -68,12 +68,17 @@ else
             </div>
         </div>
 
-        <hr />*@
+        <hr />
 
-        @*@foreach (var images in Model.Image)
-        {
-            <partial name="_Images" model="images" />
-        }*@
+        <div class="form-group row">
+
+            @foreach (var images in Model.Image)
+            {
+                <partial name="_Images" model="images" />
+            }
+        </div>
+
+        <hr />
 
         @if (Model.Id.HasValue)
         {
@@ -84,13 +89,13 @@ else
             <input asp-action="create" asp-controller="realestates" type="submit" class="btn btn-primary" value="Create" />
         }
 
-        <a asp-action="index" class="btn btn-primary">Index</a>
+        <a asp-action="index" class="btn btn-primary">Back</a>
 
     </form>
 </div>
 
 
-@*@section Scripts
+@section Scripts
 {
     <script>
         $(document).ready(function () {
@@ -106,4 +111,4 @@ else
             });
         });
     </script>
-}*@
+}

@@ -36,7 +36,11 @@ namespace ShopTARge22.ApplicationServices.Services
             realestate.BuiltInYear = dto.BuiltInYear;
             realestate.CreatedAt = DateTime.Now;
             realestate.UpdatedAt = DateTime.Now;
-            //_fileServices.FilesToApi(dto, realestate);
+
+            if (dto.Files != null)
+            {
+                _fileServices.UploadFilesToDatabase(dto, realestate);
+            }
 
 
             await _context.RealEstates.AddAsync(realestate);
@@ -55,24 +59,27 @@ namespace ShopTARge22.ApplicationServices.Services
 
         public async Task<RealEstate> Update(RealEstateDto dto)
         {
-            var domain = new RealEstate()
+            RealEstate realestate = new();
+
+            realestate.Id = dto.Id;
+            realestate.Address = dto.Address;
+            realestate.SizeSqrM = dto.SizeSqrM;
+            realestate.RoomCount = dto.RoomCount;
+            realestate.Floor = dto.Floor;
+            realestate.BuildingType = dto.BuildingType;
+            realestate.BuiltInYear = dto.BuiltInYear;
+            realestate.CreatedAt = DateTime.Now;
+            realestate.UpdatedAt = DateTime.Now;
+
+            if (dto.Files != null)
             {
-                Id = dto.Id,
-                Address = dto.Address,
-                SizeSqrM = dto.SizeSqrM,
-                RoomCount = dto.RoomCount,
-                Floor = dto.Floor,
-                BuildingType = dto.BuildingType,
-                BuiltInYear = dto.BuiltInYear,
-                CreatedAt = dto.CreatedAt,
-                UpdatedAt = DateTime.Now,
+                _fileServices.UploadFilesToDatabase(dto, realestate);
+            }
 
-        };
-
-            _context.RealEstates.Update(domain);
+            _context.RealEstates.Update(realestate);
             await _context.SaveChangesAsync();
 
-            return domain;
+            return realestate;
         }
 
         public async Task<RealEstate> Delete(Guid id)
