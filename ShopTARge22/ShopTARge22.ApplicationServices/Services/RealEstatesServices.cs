@@ -90,6 +90,7 @@ namespace ShopTARge22.ApplicationServices.Services
             _context.RealEstates.Remove(realestateId);
             await _context.SaveChangesAsync();
 
+
             return realestateId;
         }
     }

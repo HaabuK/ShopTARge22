@@ -6,7 +6,6 @@ using ShopTARge22.Core.Dto;
 using ShopTARge22.Core.ServiceInterface;
 using ShopTARge22.Data;
 using ShopTARge22.Models.RealEstates;
-using ShopTARge22.Models.Spaceships;
 
 namespace ShopTARge22.Controllers
 {
@@ -14,15 +13,18 @@ namespace ShopTARge22.Controllers
     {
         private readonly ShopTARge22Context _context;
         private readonly IRealEstatesServices _realEstatesServices;
+        private readonly IFileServices _fileServices;
 
         public RealEstatesController
         (
-        ShopTARge22Context context,
-                IRealEstatesServices RealEstatesServices
+                ShopTARge22Context context,
+                IRealEstatesServices RealEstatesServices,
+                IFileServices fileServices
             )
         {
             _context = context;
             _realEstatesServices = RealEstatesServices;
+            _fileServices = fileServices;
         }
 
 
@@ -244,21 +246,21 @@ namespace ShopTARge22.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> RemoveImage(RealEstateImageViewModel vm)
-        //{
-        //    var dto = new FileToApiDto()
-        //    {
-        //        Id = vm.ImageId
-        //    };
+        [HttpPost]
+        public async Task<IActionResult> RemoveImage(RealEstateImageViewModel vm)
+        {
+            var dto = new FileToDatabaseDto()
+            {
+                Id = vm.ImageId
+            };
 
-        //    var image = await _fileServices.RemoveImageFromApi(dto);
+            var image = await _fileServices.RemoveFilesFromDatabase(dto);
 
-        //    if (image == null)
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return RedirectToAction(nameof(Index));
-        //}
+            if (image == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
