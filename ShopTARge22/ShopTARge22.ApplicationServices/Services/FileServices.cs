@@ -48,7 +48,7 @@ namespace ShopTARge22.ApplicationServices.Services
             }
         }
 
-        public async Task<FileToDatabase> RemoveFilesFromDatabase(RealEstateDto dto)
+        public async Task<FileToDatabase> RemoveFilesFromDatabase(FileToDatabaseDto dto)
         {
             var imageId = await _context.FileToDatabases
                 .FirstOrDefaultAsync(x => x.Id == dto.Id);

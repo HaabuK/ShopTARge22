@@ -42,5 +42,8 @@
     <ProjectReference Include="..\ShopTARge22.ApplicationServices\ShopTARge22.ApplicationServices.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\ShopTARge22.RealEstateTest\ShopTARge22.RealEstateTest.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>
