@@ -8,29 +8,33 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.21">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.21">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.21" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.21" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Spaceships\" />
     <None Remove="Models\Spaceships\" />
     <None Remove="Models\RealEstates\" />
     <None Remove="Views\RealEstates\" />
+    <None Remove="Models\Kindergartens\" />
+    <None Remove="Models\Kindergartens\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Spaceships\" />
     <Folder Include="Models\Spaceships\" />
     <Folder Include="Models\RealEstates\" />
     <Folder Include="Views\RealEstates\" />
+    <Folder Include="Models\Kindergartens\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopTARge22.Data\ShopTARge22.Data.csproj">
@@ -45,5 +49,8 @@
     <ProjectReference Include="..\ShopTARge22.RealEstateTest\ShopTARge22.RealEstateTest.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20231019063739_Kinder.Designer.cs" />
   </ItemGroup>
 </Project>
