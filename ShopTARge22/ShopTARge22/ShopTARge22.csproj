@@ -20,6 +20,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Spaceships\" />
@@ -29,6 +30,10 @@
     <None Remove="Models\Kindergartens\" />
     <None Remove="Models\Kindergartens\.DS_Store" />
     <None Remove="Models\Forecast\" />
+    <None Remove="Views\WeatherForecasts\" />
+    <None Remove="Views\Kindergartens\" />
+    <None Remove="Models\Norris\" />
+    <None Remove="Views\ChuckNorris\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Spaceships\" />
@@ -37,6 +42,10 @@
     <Folder Include="Views\RealEstates\" />
     <Folder Include="Models\Kindergartens\" />
     <Folder Include="Models\Forecast\" />
+    <Folder Include="Views\WeatherForecasts\" />
+    <Folder Include="Views\Kindergartens\" />
+    <Folder Include="Models\Norris\" />
+    <Folder Include="Views\ChuckNorris\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopTARge22.Data\ShopTARge22.Data.csproj">

@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 
-namespace ShopTARge22.Core.Dto
+namespace ShopTARge22.Core.Dto.WeatherDtos
 {
     public class WeatherResponseRootDto
     {

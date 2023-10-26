@@ -10,11 +10,15 @@
     <None Remove="Domain\" />
     <None Remove="Dto\" />
     <None Remove="ServiceInterface\" />
+    <None Remove="Dto\WeatherDtos\" />
+    <None Remove="Dto\Norris\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
     <Folder Include="Dto\" />
     <Folder Include="ServiceInterface\" />
+    <Folder Include="Dto\WeatherDtos\" />
+    <Folder Include="Dto\Norris\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
