@@ -28,10 +28,10 @@ namespace ShopTARge22.Controllers
         [HttpPost]
         public IActionResult SearchCategory(SearchCategoryViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("Search", "ChuckNorris", new { category = model.categories });
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    return RedirectToAction("Search", "ChuckNorris", new { category = model.categories });
+            //}
 
             return View(model);
         }
