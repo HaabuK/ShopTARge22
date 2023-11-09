@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShopTARge22.Core.Dto.Norris;
+using ShopTARge22.Core.Dto.ChuckNorrisDtos;
 using ShopTARge22.Core.ServiceInterface;
-using ShopTARge22.Models.Norris;
+using ShopTARge22.Models.ChuckNorris;
 
 namespace ShopTARge22.Controllers
 {
@@ -11,42 +11,44 @@ namespace ShopTARge22.Controllers
 
         public ChuckNorrisController
             (
-            IChuckNorrisServices ChuckNorrisServices
+                IChuckNorrisServices chuckNorrisServices
             )
         {
-            _chuckNorrisServices = ChuckNorrisServices;
+            _chuckNorrisServices = chuckNorrisServices;
         }
-
 
         [HttpGet]
         public IActionResult Index()
         {
-
             return View();
         }
 
         [HttpPost]
-        public IActionResult SearchCategory(SearchCategoryViewModel model)
+        public IActionResult SearchChuckNorrisJokes(ChuckNorrisViewModel model)
         {
-            //if (ModelState.IsValid)
+            //if(ModelState.IsValid)
             //{
-            //    return RedirectToAction("Search", "ChuckNorris", new { category = model.categories });
+                return RedirectToAction("Joke", "ChuckNorris");
             //}
 
-            return View(model);
+            //return View(model);
         }
 
-        public IActionResult Search(string category)
+        [HttpGet]
+        public IActionResult Joke()
         {
+            ChuckNorrisResultDto dto = new();
 
-            ChuckNorrisDto dto = new();
             _chuckNorrisServices.ChuckNorrisResult(dto);
             ChuckNorrisViewModel vm = new();
 
+            vm.Categories = dto.Categories;
+            vm.CreatedAt = dto.CreatedAt;
+            vm.IconUrl = dto.IconUrl;
             vm.Id = dto.Id;
-            vm.icon_url = dto.icon_url;
-            vm.url = dto.url;
-            vm.value = dto.value;
+            vm.UpdatedAt = dto.UpdatedAt;
+            vm.Url = dto.Url;
+            vm.Value = dto.Value;
 
             return View(vm);
         }

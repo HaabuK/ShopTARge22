@@ -32,8 +32,8 @@
     <None Remove="Models\Forecast\" />
     <None Remove="Views\WeatherForecasts\" />
     <None Remove="Views\Kindergartens\" />
-    <None Remove="Models\Norris\" />
     <None Remove="Views\ChuckNorris\" />
+    <None Remove="Models\ChuckNorris\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Spaceships\" />
@@ -44,8 +44,8 @@
     <Folder Include="Models\Forecast\" />
     <Folder Include="Views\WeatherForecasts\" />
     <Folder Include="Views\Kindergartens\" />
-    <Folder Include="Models\Norris\" />
     <Folder Include="Views\ChuckNorris\" />
+    <Folder Include="Models\ChuckNorris\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopTARge22.Data\ShopTARge22.Data.csproj">
@@ -63,5 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20231019063739_Kinder.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\Shared\style.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 </Project>

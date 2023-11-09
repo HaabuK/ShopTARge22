@@ -1,32 +1,31 @@
-﻿using System.Net;
-using Nancy.Json;
-using ShopTARge22.Core.Dto.Norris;
+﻿using Nancy.Json;
+using ShopTARge22.Core.Dto.ChuckNorrisDtos;
 using ShopTARge22.Core.ServiceInterface;
-
+using System.Net;
 
 namespace ShopTARge22.ApplicationServices.Services
 {
     public class ChuckNorrisServices : IChuckNorrisServices
     {
-
-        public async Task<ChuckNorrisDto> ChuckNorrisResult(ChuckNorrisDto dto)
+        public async Task<ChuckNorrisResultDto> ChuckNorrisResult(ChuckNorrisResultDto dto)
         {
-
-            string url = $"https://api.chucknorris.io/jokes/random";
+            var url = "https://api.chucknorris.io/jokes/random";
 
             using (WebClient client = new WebClient())
             {
                 string json = client.DownloadString(url);
+                ChuckNorrisRootDto chuckNorrisResult = new JavaScriptSerializer().Deserialize<ChuckNorrisRootDto>(json);
 
-                ChuckNorrisRootDto chuckResult = new JavaScriptSerializer().Deserialize<ChuckNorrisRootDto>(json);
-
-                dto.Id = chuckResult.Id;
-                dto.icon_url = chuckResult.Icon_url;
-                dto.url = chuckResult.Url;
-                dto.value = chuckResult.Value;
+                //dto.Categories = chuckNorrisResult.Categories[0];
+                dto.CreatedAt = chuckNorrisResult.CreatedAt;
+                dto.IconUrl = chuckNorrisResult.IconUrl;
+                dto.Id = chuckNorrisResult.Id;
+                dto.UpdatedAt = chuckNorrisResult.UpdatedAt;
+                dto.Url = chuckNorrisResult.Url;
+                dto.Value = chuckNorrisResult.Value;
             }
 
-            return null;
+            return dto;
         }
     }
 }

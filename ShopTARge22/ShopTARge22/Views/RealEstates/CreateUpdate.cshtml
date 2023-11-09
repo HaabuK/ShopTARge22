@@ -1,115 +1,113 @@
 ﻿@model ShopTARge22.Models.RealEstates.RealEstateCreateUpdateViewModel
-
-@if (Model.Id.HasValue)
-{
-    <h1>Update</h1>
-}
-else
-{
-    <h1>Create</h1>
-}
-
-
-<div>
-    <form method="post" enctype="multipart/form-data">
-        <input asp-for="Id" type="hidden" />
-        <input asp-for="CreatedAt" type="hidden" />
-        <input asp-for="UpdatedAt" type="hidden" />
-
-        <div class="form-group row">
-            <label asp-for="Address" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="Address" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="SizeSqrM" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="SizeSqrM" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="RoomCount" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="RoomCount" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="Floor" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="Floor" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="BuildingType" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="BuildingType" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="BuiltInYear" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="BuiltInYear" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="Files" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-5">
-                <div class="custom-file">
-                    <input class="form-control custom-file-input" asp-for="Files" multiple type="file" />
-                    <label class="custom-file-label">Choose file...</label>
-                </div>
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="form-group row">
-
-            @foreach (var images in Model.Image)
-            {
-                <partial name="_Images" model="images" />
-                <input asp-action="removeImage" asp-controller="realestates" asp-route-imageId="@images.ImageId" type="submit"
-                       class="btn btn-danger" value="Remove Image" />
-            }
-        </div>
-        <hr />
-
+    <div class="taust">
         @if (Model.Id.HasValue)
         {
-            <input asp-action="update" asp-controller="realestates" type="submit" class="btn btn-primary" value="Update" />
+            <h1>Update</h1>
         }
         else
         {
-            <input asp-action="create" asp-controller="realestates" type="submit" class="btn btn-primary" value="Create" />
+            <h1>Create</h1>
         }
 
-        <a asp-action="index" class="btn btn-primary">Back</a>
 
-    </form>
-</div>
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="CreatedAt" type="hidden" />
+                <input asp-for="UpdatedAt" type="hidden" />
 
+                <div class="form-group row">
+                    <label asp-for="Address" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input asp-for="Address" class="form-control" />
+                    </div>
+                </div>
 
-@section Scripts
+                <div class="form-group row">
+                    <label asp-for="SizeSqrM" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input asp-for="SizeSqrM" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="RoomCount" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input asp-for="RoomCount" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="Floor" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input asp-for="Floor" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="BuildingType" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input asp-for="BuildingType" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="BuiltInYear" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input asp-for="BuiltInYear" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="Files" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-5">
+                        <div class="custom-file">
+                            <input class="form-control custom-file-input" asp-for="Files" multiple type="file" />
+                            <label class="custom-file-label">Choose file...</label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="form-group row">
+
+                    @foreach (var images in Model.Image)
+                    {
+                        <partial name="_Images" model="images" />
+                        <input asp-action="removeImage" asp-controller="realestates" asp-route-imageId="@images.ImageId" type="submit"
+                               class="btn btn-danger" value="Remove Image" />
+                    }
+                </div>
+                <hr />
+
+                @if (Model.Id.HasValue)
+                {
+                    <input asp-action="update" asp-controller="realestates" type="submit" class="btn btn-primary" value="Update" />
+                }
+                else
+                {
+                    <input asp-action="create" asp-controller="realestates" type="submit" class="btn btn-primary" value="Create" />
+                }
+
+                <a asp-action="index" class="btn btn-primary">Back</a>
+
+            </form>
+        </div>
+    </div>
+
+        @section Scripts
 {
-    <script>
-        $(document).ready(function () {
-            $('.custom-file-input').on("change", function () {
-                var fileLabel = $(this).next('.custom-file-input');
-                var files = $(this)[0].files;
-                if(files.length > 1 ) {
-                    fileLabel.html(files.length + ' files selected');
-                }
-                else if (files.length == 1) {
-                    fileLabel.html(files[0].name);
-                }
-            });
-        });
-    </script>
-}
+            <script>$(document).ready(function () {
+                    $('.custom-file-input').on("change", function () {
+                        var fileLabel = $(this).next('.custom-file-input');
+                        var files = $(this)[0].files;
+                        if (files.length > 1) {
+                            fileLabel.html(files.length + ' files selected');
+                        }
+                        else if (files.length == 1) {
+                            fileLabel.html(files[0].name);
+                        }
+                    });
+                });</script>
+        }

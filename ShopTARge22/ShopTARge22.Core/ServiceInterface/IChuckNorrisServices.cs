@@ -1,10 +1,10 @@
-﻿using ShopTARge22.Core.Dto;
-using ShopTARge22.Core.Dto.Norris;
+﻿using ShopTARge22.Core.Dto.ChuckNorrisDtos;
+
 
 namespace ShopTARge22.Core.ServiceInterface
 {
     public interface IChuckNorrisServices
     {
-        Task<ChuckNorrisDto> ChuckNorrisResult(ChuckNorrisDto dto);
+        Task<ChuckNorrisResultDto> ChuckNorrisResult(ChuckNorrisResultDto dto);
     }
 }

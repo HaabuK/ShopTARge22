@@ -1,61 +1,62 @@
 ﻿@model ShopTARge22.Models.RealEstates.RealEstateDetailsViewModel
+    <div class="taust">
+        <h1>Details</h1>
 
-<h1>Details</h1>
+        <div>
+            <h4>RealEstates</h4>
+            <hr />
+            <dl class="row">
+                <div class="form-group row">
+                    <label asp-for="Id" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.Id)
+                </div>
 
-<div>
-    <h4>RealEstates</h4>
-    <hr />
-    <dl class="row">
-        <div class="form-group row">
-            <label asp-for="Id" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.Id)
+                <div class="form-group row">
+                    <label asp-for="Address" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.Address)
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="SizeSqrM" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.SizeSqrM)
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="RoomCount" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.RoomCount)
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="Floor" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.Floor)
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="BuildingType" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.BuildingType)
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="BuiltInYear" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.BuiltInYear)
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="CreatedAt" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.CreatedAt)
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="UpdatedAt" class="col-sm-2 col-form-label"></label>
+                    @Html.DisplayFor(model => model.UpdatedAt)
+                </div>
+
+                @foreach (var images in Model.Image)
+                {
+                    <partial name="_Images" model="images" />
+                }
+
+            </dl>
+            <a asp-action="Index" asp-controller="realestates" class="btn btn-danger">Back</a>
         </div>
-
-        <div class="form-group row">
-            <label asp-for="Address" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.Address)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="SizeSqrM" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.SizeSqrM)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="RoomCount" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.RoomCount)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="Floor" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.Floor)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="BuildingType" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.BuildingType)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="BuiltInYear" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.BuiltInYear)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="CreatedAt" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="UpdatedAt" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </div>
-
-        @foreach (var images in Model.Image)
-        {
-            <partial name="_Images" model="images" />
-        }
-
-    </dl>
-    <a asp-action="Index" asp-controller="realestates" class="btn btn-danger">Back</a>
-</div>
+    </div>
