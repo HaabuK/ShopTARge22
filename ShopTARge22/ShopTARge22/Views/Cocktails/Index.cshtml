@@ -1,0 +1,23 @@
+﻿@model ShopTARge22.Models.Cocktails.SearchCocktailViewModel
+
+    <div class="taust">
+        <h1>Search Cocktail</h1>
+
+        <div class="container">
+            <form method="post">
+                <div class="container" style="width:50%;">
+                    <div>
+                        <h2>Find your favorite cocktail</h2>
+                        <label asp-for="SearchCocktail" style="font-family: Arial"></label>
+                        <input asp-for="SearchCocktail" class="form-control" />
+                        <span asp-validation-for="SearchCocktail" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="container">
+                    <div>
+                        <button asp-controller="cocktails" asp-action="searchCocktails" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

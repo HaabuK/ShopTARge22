@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Accuweather.Locations" Version="1.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,6 +22,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />
     <PackageReference Include="Nancy" Version="2.0.0" />
+    <PackageReference Include="Accuweather" Version="1.0.0" />
+    <PackageReference Include="Accuweather.Core" Version="1.0.1" />
+    <PackageReference Include="Accuweather.Current" Version="1.0.0" />
+    <PackageReference Include="Accuweather.Forecast" Version="1.0.0" />
+    <PackageReference Include="Accuweather.Indices" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Spaceships\" />
