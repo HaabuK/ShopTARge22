@@ -22,6 +22,7 @@
     <PackageReference Include="Accuweather.Indices" Version="1.0.0" />
     <PackageReference Include="Accuweather.Locations" Version="1.0.0" />
     <PackageReference Include="Accuweather.Forecast" Version="1.0.0" />
+    <PackageReference Include="MailKit" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopTARge22.Core\ShopTARge22.Core.csproj" />

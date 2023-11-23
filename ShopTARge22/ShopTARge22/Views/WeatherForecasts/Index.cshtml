@@ -1,14 +1,12 @@
 ﻿@model ShopTARge22.Models.Forecast.SearchCityViewModel
 
 <div class="taust">
-
-    <h1>Weather Forecast</h1>
-
     <div class="container">
         <form method="post">
             <div class="container" style="width:50%;">
                 <div>
-                    <h2>Search the forecast in a city</h2>
+                    <h1>OpenWeather Forecast</h1>
+                    <h3>Search the forecast in a city</h3>
                     <label asp-for="CityName" style="font-family: Arial"></label>
                     <input asp-for="CityName" class="form-control" />
                     <span asp-validation-for="CityName" class="text-danger"></span>

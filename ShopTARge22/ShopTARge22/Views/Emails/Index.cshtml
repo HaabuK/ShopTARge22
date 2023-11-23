@@ -1,0 +1,32 @@
+﻿@model ShopTARge22.Models.Emails.EmailViewModel
+
+<div class="taust">
+    <div class="container">
+        <form method="post">
+            <div class="container" style="width:50%;">
+                <div>
+                    <h2>Send an email</h2>
+                    <h4>Through Gmail</h4><br />
+                    <label for="exampleFormControlInput1" class="form-label">Recipient</label>
+                    <input type="email" asp-for="To" class="form-control" id="exampleFormControlInput1" placeholder="example@tthk.ee" />
+                    <br/>
+                    <label for="exampleFormControlInput2" class="form-label">Subject</label>
+                    <input asp-for="Subject" class="form-control" id="exampleFormControlInput2"/>
+                    <br/>
+                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                    <textarea rows="8" cols="58" asp-for="Body"></textarea>
+                </div>
+            </div>
+            <p>
+
+            </p>
+            <div>
+                <div class="container">
+                    <div>
+                        <button asp-controller="Emails" asp-action="SendEmail" class="btn btn-primary">Send E-mail</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

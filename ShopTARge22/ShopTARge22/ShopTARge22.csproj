@@ -28,6 +28,7 @@
     <PackageReference Include="Accuweather.Forecast" Version="1.0.0" />
     <PackageReference Include="Accuweather.Indices" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="MailKit" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Spaceships\" />
@@ -41,6 +42,8 @@
     <None Remove="Views\Kindergartens\" />
     <None Remove="Views\ChuckNorris\" />
     <None Remove="Models\ChuckNorris\" />
+    <None Remove="Views\Emails\" />
+    <None Remove="Models\Emails\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Spaceships\" />
@@ -53,6 +56,8 @@
     <Folder Include="Views\Kindergartens\" />
     <Folder Include="Views\ChuckNorris\" />
     <Folder Include="Models\ChuckNorris\" />
+    <Folder Include="Views\Emails\" />
+    <Folder Include="Models\Emails\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopTARge22.Data\ShopTARge22.Data.csproj">
