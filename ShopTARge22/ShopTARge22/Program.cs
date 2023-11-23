@@ -15,7 +15,7 @@ builder.Services.AddScoped<IKindergartensServices, KindergartensServices>();
 builder.Services.AddScoped<IFileServices, FileServices>();
 builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
 builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
-builder.Services.AddScoped<IAccuWeatherForecastServices, AccuWeatherForecastsServices>();
+builder.Services.AddScoped<IAccuWeatherServices, AccuWeatherServices>();
 builder.Services.AddScoped<ICocktailServices, CocktailServices>();
 
 builder.Services.AddDbContext<ShopTARge22Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ShopTARge22")));

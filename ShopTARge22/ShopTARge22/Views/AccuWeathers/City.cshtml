@@ -1,0 +1,38 @@
+﻿@model ShopTARge22.Models.AccuWeather.AccuWeatherViewModel;
+
+<div class="taust">
+    <div class="container" style="width:50%;">
+        <h2>Current conditions in @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.Country)</h2>
+        <ul class="features">
+
+            <li>
+                <label>Temperature:</label>
+                <span>@Model.Temperature °C</span>
+            </li>
+            <li>
+                <label>Feels like:</label>
+                <span>@Model.RealFeelTemperature °C</span>
+            </li>
+            <li>
+                <label>Humidity:</label>
+                <span>@Model.RelativeHumidity %</span>
+            </li>
+            <li>
+                <label>Windspeed:</label>
+                <span>@Model.Wind km/h</span>
+            </li>
+            <li>
+                <label>Air pressure:</label>
+                <span>@Model.Pressure hPa</span>
+            </li>
+            <li>
+                <label>Conditions:</label>
+                <span>@Model.WeatherText </span>
+            </li>
+    </div>
+
+    <div class="container">
+        <form method="get">
+            <button asp-action="Index" asp-controller="AccuWeathers" class="btn btn-success">Back</button>
+        </form>
+    </div>

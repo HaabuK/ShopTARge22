@@ -1,0 +1,26 @@
+﻿@model ShopTARge22.Models.AccuWeather.AccuSearchCityViewModel
+
+<div class="taust">
+    <div class="container">
+        <form method="post">
+            <div class="container" style="width:50%;">
+                <div>
+                    <h2>Search the city</h2>
+                    <label asp-for="City"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <p>
+
+            </p>
+            <div>
+                <div class="container">
+                    <div>
+                        <button asp-controller="AccuWeathers" asp-action="searchCity" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -14,7 +14,7 @@ namespace ShopTARge22.Core.Dto
         public DateTime EffectiveDate { get; set; }
 
         [JsonPropertyName("EpochTime")]
-        public int EffectiveEpochDate { get; set; }
+        public int EpockTime { get; set; }
 
         [JsonPropertyName("WeatherIcon")]
         public int WeatherIcon { get; set; }
@@ -23,7 +23,7 @@ namespace ShopTARge22.Core.Dto
         public string Text { get; set; }
 
         [JsonPropertyName("HasPrecipitation")]
-        public bool Precipitation { get; set; }
+        public string Precipitation { get; set; }
 
         [JsonPropertyName("PrecipitationType")]
         public string PrecipType { get; set; }
@@ -32,16 +32,7 @@ namespace ShopTARge22.Core.Dto
         public bool Daytime { get; set; }
 
         [JsonPropertyName("Temperature")]
-        public DateTime Date { get; set; }
-
-        [JsonPropertyName("EpochDate")]
-        public int EpochDate { get; set; }
         public Temperature Temperature { get; set; }
-        public Day Day { get; set; }
-        public Night Night { get; set; }
-
-        [JsonPropertyName("Sources")]
-        public string[] Sources { get; set; }
 
         [JsonPropertyName("MobileLink")]
         public string MobileLink { get; set; }
