@@ -29,6 +29,7 @@
     <PackageReference Include="Accuweather.Indices" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="MailKit" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Spaceships\" />
@@ -44,6 +45,9 @@
     <None Remove="Models\ChuckNorris\" />
     <None Remove="Views\Emails\" />
     <None Remove="Models\Emails\" />
+    <None Remove="Views\Accounts\" />
+    <None Remove="Models\Accounts\" />
+    <None Remove="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Spaceships\" />
@@ -58,6 +62,9 @@
     <Folder Include="Models\ChuckNorris\" />
     <Folder Include="Views\Emails\" />
     <Folder Include="Models\Emails\" />
+    <Folder Include="Views\Accounts\" />
+    <Folder Include="Models\Accounts\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopTARge22.Data\ShopTARge22.Data.csproj">

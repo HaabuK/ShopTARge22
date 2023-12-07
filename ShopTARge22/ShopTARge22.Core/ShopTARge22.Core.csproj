@@ -12,6 +12,7 @@
     <None Remove="ServiceInterface\" />
     <None Remove="Dto\WeatherDtos\" />
     <None Remove="Dto\Norris\" />
+    <None Remove="Dto\AccountsDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
@@ -19,6 +20,7 @@
     <Folder Include="ServiceInterface\" />
     <Folder Include="Dto\WeatherDtos\" />
     <Folder Include="Dto\Norris\" />
+    <Folder Include="Dto\AccountsDtos\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
@@ -33,5 +35,6 @@
     <PackageReference Include="Accuweather.Forecast" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="MailKit" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
   </ItemGroup>
 </Project>
