@@ -9,10 +9,12 @@ namespace ShopTARge22.ApplicationServices.Services
 	public class AccountServices : IAccountServices
     {
 		private readonly UserManager<ApplicationUser> _userManager;
+		private readonly SignInManager<ApplicationUser> _signInManager;
 
-		public AccountServices( UserManager<ApplicationUser> userManager)
+		public AccountServices( UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
 		{
 			_userManager = userManager;
+			_signInManager = signInManager;
 		}
 
 		public async Task<ApplicationUser> Register(ApplicationUserDto dto)
@@ -45,6 +47,15 @@ namespace ShopTARge22.ApplicationServices.Services
 				string errorMessage = $"The user Id {userId} is not valid";
 			}
 			var result = await _userManager.ConfirmEmailAsync(user, token);
+
+			return user;
+		}
+
+		public async Task<ApplicationUser> Login(LoginDto dto)
+		{
+			dto.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+			var user = await _userManager.FindByEmailAsync(dto.Email);
 
 			return user;
 		}
