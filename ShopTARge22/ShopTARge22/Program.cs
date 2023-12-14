@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using ShopTARge22.Core.ServiceInterface;
 using ShopTARge22.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Identity;
+using ShopTARge22.Core.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +20,16 @@ builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
 builder.Services.AddScoped<IAccuWeatherServices, AccuWeatherServices>();
 builder.Services.AddScoped<ICocktailServices, CocktailServices>();
 builder.Services.AddScoped<IEmailServices, EmailServices>();
+builder.Services.AddRazorPages();
+
 
 builder.Services.AddDbContext<ShopTARge22Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ShopTARge22")));
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-    
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+    options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ShopTARge22Context>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
