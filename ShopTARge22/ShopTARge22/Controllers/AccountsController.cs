@@ -25,16 +25,20 @@ namespace ShopTARge22.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> ChangePassword()
+		public IActionResult ChangePassword()
 		{
-			var user = await _userManager.GetUserAsync(User);
-			var userHasPassword = await _userManager.HasPasswordAsync(user);
+			//var user = await _userManager.GetUserAsync(User);
+			//var userHasPassword = await _userManager.HasPasswordAsync(user);
 
-			if (userHasPassword)
-			{
-				return RedirectToAction("AddPassword");
-			}
-			return View();
+			//if (userHasPassword)
+			//{
+			//	return RedirectToAction("ChangePassword");
+			//}
+   //         else
+   //         {
+   //             RedirectToAction("AddPassword");
+   //         }
+            return View();
 		}
 
 		[HttpPost]
@@ -75,6 +79,10 @@ namespace ShopTARge22.Controllers
 			{
 				RedirectToAction("ChangePassword");
 			}
+			else
+			{
+                RedirectToAction("AddPassword");
+            }
 			return View();
 		}
 
@@ -263,7 +271,7 @@ namespace ShopTARge22.Controllers
 
 		[HttpGet]
 		[AllowAnonymous]
-		public async Task<IActionResult> Login(string returnUrl)
+		public async Task<IActionResult> Login(string? returnUrl)
 		{
 			LoginViewModel vm = new()
 			{
@@ -274,52 +282,60 @@ namespace ShopTARge22.Controllers
 			return View(vm);
 		}
 
-		[HttpPost]
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
+        {
+            model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+
+                if (user != null && !user.EmailConfirmed && (await _userManager.CheckPasswordAsync(user, model.Password)))
+                {
+                    ModelState.AddModelError(string.Empty, "Email not confirmed yet");
+                    return View(model);
+                }
+
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
+
+                // Log the result for debugging purposes
+                if (!result.Succeeded)
+                {
+                    // Log or debug the result to identify the issue
+                    Console.WriteLine($"Login failed. Result: {result}");
+                }
+
+                if (result.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                if (result.IsLockedOut)
+                {
+                    return View("AccountLocked");
+                }
+
+                ModelState.AddModelError("", "Invalid Login attempt");
+            }
+
+            return View(model);
+        }
+
+
+        [HttpPost]
 		[AllowAnonymous]
-		public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+		public IActionResult ExternalLogin(string provider, string? returnUrl)
 		{
-			model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
-			if (ModelState.IsValid)
-			{
-				var user = await _userManager.FindByEmailAsync(model.Email);
-
-				if(user != null && !user.EmailConfirmed && (await _userManager.CheckPasswordAsync(user, model.Password)))
-				{
-					ModelState.AddModelError(string.Empty, "Email not confirmed yet");
-					return View(model);
-				}
-
-				var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
-
-				if (result.Succeeded)
-				{
-					if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-					{
-						return Redirect(returnUrl);
-					}
-					else
-					{
-						return RedirectToAction("Index", "Home");
-					}
-				}
-
-				if (result.IsLockedOut)
-				{
-					return View("AccountLocked");
-				}
-
-				ModelState.AddModelError("", "Invalid Login attempt");
-			}
-
-			return View(model);
-		}
-
-		[HttpPost]
-		[AllowAnonymous]
-		public IActionResult ExternalLogin(string provider, string returnUrl)
-		{
-			var redirectUrl = Url.Action("ExternalLoginCallback", "Accounts", new{returnUrl = returnUrl});
+			var redirectUrl = Url.Action("ExternalLoginCallback", "Accounts", new { returnUrl = returnUrl });
 
 			var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
@@ -327,7 +343,7 @@ namespace ShopTARge22.Controllers
 		}
 
 		[AllowAnonymous]
-		public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+		public async Task<IActionResult> ExternalLoginCallback(string? returnUrl = null, string remoteError = null)
 		{
 			returnUrl = returnUrl ?? Url.Content("~/");
 
@@ -377,7 +393,7 @@ namespace ShopTARge22.Controllers
 			{
 				if (email != null)
 				{
-					if(user == null)
+					if (user == null)
 					{
 						user = new ApplicationUser
 						{

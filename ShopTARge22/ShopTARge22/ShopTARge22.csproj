@@ -30,6 +30,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="MailKit" Version="4.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.25" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Spaceships\" />
@@ -48,6 +49,7 @@
     <None Remove="Views\Accounts\" />
     <None Remove="Models\Accounts\" />
     <None Remove="Utilities\" />
+    <None Remove="Security\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Spaceships\" />
@@ -65,6 +67,7 @@
     <Folder Include="Views\Accounts\" />
     <Folder Include="Models\Accounts\" />
     <Folder Include="Utilities\" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopTARge22.Data\ShopTARge22.Data.csproj">

@@ -87,13 +87,13 @@ namespace ShopTARge22.Areas.Identity.Pages.Account
         
         public IActionResult OnGet() => RedirectToPage("./Login");
 
-        public IActionResult OnPost(string provider, string returnUrl = null)
-        {
-            // Request a redirect to the external login provider.
-            var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            return new ChallengeResult(provider, properties);
-        }
+        //public IActionResult OnPost(string provider, string returnUrl = null)
+        //{
+        //    // Request a redirect to the external login provider.
+        //    var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
+        //    var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+        //    return new ChallengeResult(provider, properties);
+        //}
 
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
@@ -144,8 +144,8 @@ namespace ShopTARge22.Areas.Identity.Pages.Account
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information during confirmation.";
-                return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
+                //ErrorMessage = "Error loading external login information during confirmation.";
+                //return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
             if (ModelState.IsValid)

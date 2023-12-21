@@ -20,7 +20,7 @@ namespace ShopTARge22.Models.Accounts
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
-        [Compare("NewPassword", ErrorMessage = "The password does not match")]
+        [Compare("Password", ErrorMessage = "The password does not match")]
         public string ConfirmPassword { get; set; }
 
         public string Token { get; set; }

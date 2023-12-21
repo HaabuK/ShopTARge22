@@ -112,3 +112,14 @@ a.navbar-brand {
     text-align: center;
     word-break: break-all;
 }
+
+.loggedin-btn {
+    background-color: rgba(255,255,255, .2);
+    border-radius: 10px;
+    border: none;
+    height:45px;
+    min-width:45px;
+}
+    .loggedin-btn:hover {
+        background-color: rgba(0,0,0, .2);
+    }

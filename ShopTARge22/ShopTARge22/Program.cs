@@ -3,13 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using ShopTARge22.Core.ServiceInterface;
 using ShopTARge22.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
+using ShopTARge22.Hubs;
 using Microsoft.AspNetCore.Identity;
 using ShopTARge22.Core.Domain;
+using ShopTARge22.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
 
 builder.Services.AddScoped<ISpaceshipsServices, SpaceshipsServices>();
 builder.Services.AddScoped<IRealEstatesServices, RealEstatesServices>();
@@ -27,9 +30,24 @@ builder.Services.AddDbContext<ShopTARge22Context>(options => options.UseSqlServe
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-    options.SignIn.RequireConfirmedAccount = true)
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequiredLength = 3;
+
+    options.Lockout.MaxFailedAccessAttempts = 2;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+})
     .AddEntityFrameworkStores<ShopTARge22Context>()
-    .AddDefaultTokenProviders();
+    .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmaation")
+    .AddDefaultUI();
+
+//All tokens
+builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
+o.TokenLifespan = TimeSpan.FromHours(5));
+
+//email tokens confimration
+builder.Services.Configure<CustomEmailConfigurationTokenProviderOptions>(o =>
+o.TokenLifespan = TimeSpan.FromDays(3));
 
 var app = builder.Build();
 
@@ -54,7 +72,10 @@ app.UseStaticFiles(new StaticFileOptions
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
