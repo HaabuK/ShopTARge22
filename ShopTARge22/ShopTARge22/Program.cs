@@ -29,21 +29,20 @@ builder.Services.AddRazorPages();
 builder.Services.AddAuthentication()
     .AddFacebook(options =>
     {
-        options.AppId = "<YOUR APPID>";
-        options.AppSecret = "<YOUR APP SECRET>";
+        options.AppId = builder.Configuration["ExternalLogins:Facebook:AppId"];
+        options.AppSecret = builder.Configuration["ExternalLogins:Facebook:AppSecret"];
     })
 
     .AddGoogle(options =>
     {
-        options.ClientId = "<YOUR APPID>";
-        options.ClientSecret = "<YOUR APP SECRET>";
+        options.ClientId = builder.Configuration["ExternalLogins:Google:AppId"];
+        options.ClientSecret = builder.Configuration["ExternalLogins:Google:AppSecret"];
     })
     .AddMicrosoftAccount(options =>
     {
-        options.ClientId = "<YOUR APPID>";
-        options.ClientSecret = "<YOUR APP SECRET>";
+        options.ClientId = builder.Configuration["ExternalLogins:Microsoft:AppId"];
+        options.ClientSecret = builder.Configuration["ExternalLogins:Microsoft:AppSecret"];
     });
-
 
 builder.Services.AddDbContext<ShopTARge22Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ShopTARge22")));
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -57,7 +56,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 })
     .AddEntityFrameworkStores<ShopTARge22Context>()
-    .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmaation")
+    .AddDefaultTokenProviders()
+    .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmation")
     .AddDefaultUI();
 
 //All tokens

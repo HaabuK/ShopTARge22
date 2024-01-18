@@ -23,6 +23,9 @@ namespace ShopTARge22.Models.Accounts
         [Compare("Password", ErrorMessage = "The password does not match")]
         public string ConfirmPassword { get; set; }
 
+        [Display(Name = "Delete Password")]
+        public bool DeletePassword { get; set; }
+
         public string Token { get; set; }
     }
 }

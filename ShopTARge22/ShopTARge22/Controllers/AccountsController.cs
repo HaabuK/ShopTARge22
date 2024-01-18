@@ -3,7 +3,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ShopTARge22.Core.Domain;
+using ShopTARge22.Data;
 using ShopTARge22.Models.Accounts;
 
 namespace ShopTARge22.Controllers
@@ -12,34 +14,38 @@ namespace ShopTARge22.Controllers
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ShopTARge22Context _context;
+
 
         public AccountsController
 			(
-			UserManager<ApplicationUser> userManager,
+            ShopTARge22Context context,
+            UserManager<ApplicationUser> userManager,
 			SignInManager<ApplicationUser> signInManager
 			)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
+			_context = context;
 			
 		}
 
 		[HttpGet]
-		public IActionResult ChangePassword()
+		public async Task<IActionResult> ChangePassword()
 		{
-			//var user = await _userManager.GetUserAsync(User);
-			//var userHasPassword = await _userManager.HasPasswordAsync(user);
+            var user = await _userManager.GetUserAsync(User);
+            var userHasPassword = await _userManager.HasPasswordAsync(user);
 
-			//if (userHasPassword)
-			//{
-			//	return RedirectToAction("ChangePassword");
-			//}
-   //         else
-   //         {
-   //             RedirectToAction("AddPassword");
-   //         }
-            return View();
-		}
+            if (userHasPassword)
+            {
+                return View("ChangePassword");
+            }
+            else
+            {
+                RedirectToAction("AddPassword");
+                return View("AddPassword");
+            }
+        }
 
 		[HttpPost]
 		public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -69,57 +75,69 @@ namespace ShopTARge22.Controllers
 			return View(model);
 		}
 
-		[HttpGet]
-		public async Task<IActionResult> AddPassword()
-		{
-			var user = await _userManager.GetUserAsync(User);
-			var userHasPassword = await _userManager.HasPasswordAsync(user);
+        [HttpGet]
+        public async Task<IActionResult> AddPassword()
+        {
+            return View("AddPassword");
+        }
 
-			if (userHasPassword)
-			{
-				RedirectToAction("ChangePassword");
-			}
-			else
-			{
-                RedirectToAction("AddPassword");
+        [HttpPost]
+        public async Task<IActionResult> AddPassword(AddPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
+
+                if (result.Succeeded)
+                {
+                    return View("AddPasswordConfirmation");
+                }
+                else
+                {
+                    // Password addition failed, add errors to ModelState
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View("AddPassword", model); // Return the same view with errors
+                }
             }
-			return View();
-		}
+            return View("AddPassword", model);
+        }
 
-		[HttpPost]
-		public async Task<IActionResult> AddPassword(AddPasswordViewModel model)
-		{
-			if (ModelState.IsValid)
-			{
-				var user = await _userManager.GetUserAsync(User);
 
-				var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
-
-				if (result.Succeeded)
-				{
-					foreach (var error in result.Errors)
-					{
-						ModelState.AddModelError(string.Empty, error.Description);
-					}
-					return View();
-				}
-				await _signInManager.RefreshSignInAsync(user);
-
-				return View("AddPasswordConfirmation");
-			}
-			return View(model);
-		}
-
-		[HttpGet]
+        [HttpGet]
 		[AllowAnonymous]
-		public IActionResult ResetPassword(string token, string email)
-		{
-			if (token == null || email == null)
-			{
-				ModelState.AddModelError("", "Invalid password reset token");
-			}
-			return View();
-		}
+		public async Task<IActionResult> ResetPassword()//string token, string email, string id
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userHasPassword = await _userManager.HasPasswordAsync(user);
+
+            if (userHasPassword)
+            {
+				var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+				if (token == null || user.Email == null)
+				{
+					ModelState.AddModelError("", "Invalid password reset token");
+				}
+
+				var model = new ResetPasswordViewModel
+				{
+					Token = token,
+					Email = user.Email,
+				};
+
+				return View(model);
+            }
+            else
+            {
+                RedirectToAction("AddPassword");
+                return View("AddPassword");
+            }
+        }
 
 		[HttpPost]
 		[AllowAnonymous]
@@ -127,32 +145,71 @@ namespace ShopTARge22.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = await _userManager.FindByEmailAsync(model.Email);
-				if (user != null)
+				if (model.DeletePassword == false)
 				{
-					var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
-					if (result.Succeeded)
-					{
-						if(await _userManager.IsLockedOutAsync(user))
-						{
-							await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow);
-						}
-						return View("ResetPasswordConfirmation");
-					}
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    if (user != null)
+                    {
+                        var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+                        if (result.Succeeded)
+                        {
+                            if (await _userManager.IsLockedOutAsync(user))
+                            {
+                                await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow);
+                            }
+                            await _signInManager.SignOutAsync();
+                            return RedirectToAction(nameof(ResetPasswordConfirmation));
+                        }
 
-					foreach (var error in result.Errors)
-					{
-						ModelState.AddModelError("", error.Description);
-					}
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
 
-					return View(model);
-				}
-				return View("ResetPasswordConfirmation");
-			}
+                        return View(model);
+                    }
+                    //await _signInManager.SignOutAsync();
+                    return View("ResetPasswordConfirmation");
+                }
+				else if (model.DeletePassword == false)
+                {
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    if (user != null)
+                    {
+                        var result = await _userManager.ResetPasswordAsync(user, model.Token, "NULL");
+                        if (result.Succeeded)
+                        {
+                            if (await _userManager.IsLockedOutAsync(user))
+                            {
+                                await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow);
+                            }
+                            await _signInManager.SignOutAsync();
+                            return RedirectToAction(nameof(ResetPasswordConfirmation));
+                        }
+
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+
+                        return View(model);
+                    }
+                    //await _signInManager.SignOutAsync();
+                    return View("ResetPasswordConfirmation");
+                }
+
+            }
             return View(model);
         }
 
-		[HttpGet]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        [HttpGet]
 		[AllowAnonymous]
 		public IActionResult ForgotPassword()
 		{
