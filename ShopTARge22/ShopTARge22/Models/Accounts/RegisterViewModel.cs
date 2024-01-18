@@ -9,7 +9,7 @@ namespace ShopTARge22.Models.Accounts
 	{
         [Required]
         [EmailAddress]
-        [ValidEmailDomain(allowedDomain: "gmail.com", ErrorMessage = "Email must be @gmail.com")]
+        //[ValidEmailDomain(allowedDomain: ".com", ErrorMessage = "Email must end with .com")]
         public string Email { get; set; }
 
         [Required]

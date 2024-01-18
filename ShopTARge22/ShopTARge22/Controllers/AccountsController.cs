@@ -335,7 +335,7 @@ namespace ShopTARge22.Controllers
 		[AllowAnonymous]
 		public IActionResult ExternalLogin(string provider, string? returnUrl)
 		{
-			var redirectUrl = Url.Action("ExternalLoginCallback", "Accounts", new { returnUrl = returnUrl });
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Accounts", new { returnUrl = returnUrl });
 
 			var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
@@ -375,11 +375,11 @@ namespace ShopTARge22.Controllers
 			{
 				user = await _userManager.FindByEmailAsync(email);
 
-				if (user != null && !user.EmailConfirmed)
-				{
-					ModelState.AddModelError("", "Email not confirmed yet");
-					return View("Login", loginViewModel);
-				}
+				//if (user != null && !user.EmailConfirmed)
+				//{
+				//	ModelState.AddModelError("", "Email not confirmed yet");
+				//	return View("Login", loginViewModel);
+				//}
 			}
 
 			var signInResult = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey,
@@ -399,7 +399,9 @@ namespace ShopTARge22.Controllers
 						{
 							UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
 
-							Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+							Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+
+							City = "Unset",
 						};
 
 						await _userManager.CreateAsync(user);

@@ -5,6 +5,7 @@ using ShopTARge22.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
 using ShopTARge22.Hubs;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
 using ShopTARge22.Core.Domain;
 using ShopTARge22.Security;
 
@@ -24,6 +25,24 @@ builder.Services.AddScoped<IAccuWeatherServices, AccuWeatherServices>();
 builder.Services.AddScoped<ICocktailServices, CocktailServices>();
 builder.Services.AddScoped<IEmailServices, EmailServices>();
 builder.Services.AddRazorPages();
+
+builder.Services.AddAuthentication()
+    .AddFacebook(options =>
+    {
+        options.AppId = "<YOUR APPID>";
+        options.AppSecret = "<YOUR APP SECRET>";
+    })
+
+    .AddGoogle(options =>
+    {
+        options.ClientId = "<YOUR APPID>";
+        options.ClientSecret = "<YOUR APP SECRET>";
+    })
+    .AddMicrosoftAccount(options =>
+    {
+        options.ClientId = "<YOUR APPID>";
+        options.ClientSecret = "<YOUR APP SECRET>";
+    });
 
 
 builder.Services.AddDbContext<ShopTARge22Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ShopTARge22")));
@@ -71,8 +90,8 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.UseRouting();
-
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapRazorPages();

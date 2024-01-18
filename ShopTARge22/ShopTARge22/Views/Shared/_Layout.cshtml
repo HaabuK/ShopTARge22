@@ -29,7 +29,7 @@
                                 </svg>
                             </a>
                         </li>
-                        <li style="margin-left: 30%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+                        <li style="margin-left: 33%;"></li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-shield-fill-check" viewBox="0 0 16 16">
@@ -110,9 +110,11 @@
                                                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                                             </svg>
                                         </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" asp-controller="Accounts" asp-action="ChangePassword"> Change PW</a></li>
-                                            <li><a class="dropdown-item" asp-controller="Accounts" asp-action="ResetPassword"> Reset PW</a></li>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="width:auto; text-align:center; left:-150px; border-radius:10px;">
+                                            <li style="padding-left:10px; padding-right:10px;">@User.Identity.Name</li>
+                                            <hr />
+                                            <li><a class="dropdown-item" asp-controller="Accounts" asp-action="ChangePassword"> Change Password</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Accounts" asp-action="ResetPassword"> Reset Password2</a></li>
                                         </ul>
                                     </div>
                                 </li>
